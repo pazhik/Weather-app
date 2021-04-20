@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_graph"
+    app:startDestination="@id/weather_list">
+
+    <include android:id="@+id/login_graph" app:graph="@navigation/login_graph" />
+
+    <action
+        android:id="@+id/action_global_login"
+        app:destination="@id/login_graph"
+        app:launchSingleTop="true" />
+
+    <fragment
+        android:id="@+id/weather_list"
+        android:name="com.acme.weather.app.view.WeatherListFragment"
+        android:label="Weather Now"
+        tools:layout="@layout/weather_list_fragment">
+
+        <action
+            android:id="@+id/navigate_to_weather_details"
+            app:destination="@id/weather_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                android:name="use_fahrenheit"
+                android:defaultValue="true" />
+
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/weather_detail"
+        android:name="com.acme.weather.app.view.WeatherDetailFragment"
+        android:label="Today's Forecast"
+        tools:layout="@layout/weather_detail_fragment">
+
+        <argument
+            android:name="zip_code"
+            app:argType="string" />
+
+        <argument
+            android:name="use_fahrenheit"
+            app:argType="boolean"
+            android:defaultValue="true" />
+
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="weather.acme.com/{zip_code}" />
+
+    </fragment>
+
+</navigation>
