@@ -129,7 +129,7 @@ class WeatherListFragment : SecureFragment(), Injectable {
         hideProgressDialog()
         val v = view
         if(v != null) {
-            Snackbar.make(v, error, Snackbar.LENGTH_SHORT)
+            Snackbar.make(v, error, Snackbar.LENGTH_SHORT).show();
         }
     }
 

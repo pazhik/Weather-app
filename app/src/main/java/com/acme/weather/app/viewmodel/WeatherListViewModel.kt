@@ -31,8 +31,8 @@ class WeatherListViewModel @Inject constructor(
                 weatherRepository.addWeatherLocation(location = location)
                 state.postValue(DEFAULT()) // post, automatically emits to UI thread.
             } else {
+                Timber.e("Null location")
                 state.postValue(LOCATION_ADD_FAILED("Location not found"))
-                state.postValue(DEFAULT())
             }
         }
     }
